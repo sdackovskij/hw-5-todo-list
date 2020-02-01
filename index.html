@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="styles/css/styles.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="container">
+      <section class="task-add">
+        <div class="header">
+          <span class="current-date" id="Current_day"></span>
+          <input class="clear-all" type="submit" id="clear" value="Clear all" />
+        </div>
+        <div class="set-task">
+          <label for="nameTask">Task:</label>
+          <input
+            type="text"
+            placeholder="type your task..."
+            id="nameTask"
+            class="text-input task-name"
+          /><br />
+          <label for="date">Deadline:</label>
+          <input type="date" id="date" class="text-input date" />
+          <input
+            class="add-new-task"
+            type="submit"
+            id="sub"
+            value="Add new task"
+          />
+        </div>
+        <div class="filters">
+          <label for="DoneFilter">Filter by done:</label>
+          <select name="DoneFilter" id="DoneFilter">
+            <option value="AllTasks">All tasks</option>
+            <option value="AllDone">Done</option>
+            <option value="AllUndone">Undone</option>
+          </select>
+          <label for="DateFilter">Filter by deadline:</label>
+          <select name="DateFilter" id="DateFilter">
+            <option value="AllDate">All tasks</option>
+            <option value="Tomorrow">Tomorrow</option>
+            <option value="Week">Week</option>
+          </select>
+        </div>
+      </section>
+
+      <section class="task-list">
+        <ul class="list-result" id="list"></ul>
+      </section>
+    </div>
+  </body>
+  <script src="script.js"></script>
+</html>
