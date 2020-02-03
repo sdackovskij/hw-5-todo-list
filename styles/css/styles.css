@@ -35,20 +35,21 @@ select {
 
 .header {
   margin-bottom: 15px;
-  border-bottom: 1px solid grey; }
+  border-bottom: 1px solid grey;
+  display: flex;
+  justify-content: space-between; }
 
 .current-date {
   font-size: 25px;
   color: #666afb; }
 
 .clear-all {
-  border-radius: 10%;
+  border-radius: 10px;
   background-color: #fb6f70;
   border: none;
   color: white;
-  padding: 15px;
+  padding: 0px  10px;
   text-align: center;
-  margin-left: 25%;
   font-size: 16px; }
 
 .add-new-task {
