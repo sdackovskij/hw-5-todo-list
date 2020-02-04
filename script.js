@@ -84,38 +84,32 @@ var todoModule = (function() {
     elem.nextSibling.classList.toggle("doneTask");
   }
 
-  DoneFilter.addEventListener("change", function(event) {
+  function filter(dateEvent) {
     var arrForFilter = toArray();
 
     for (var i = 0; i < arrForFilter.length; i++) {
-      list.children[i].removeAttribute("hidden", "true");
-
-      if (event.target.value == "AllDone" && arrForFilter[i].done == false) {
-        list.children[i].setAttribute("hidden", "true");
+      if (dateEvent == DateFilter) {
+        var taskDeadline = new Date(arrForFilter[i].date);
+        var now = new Date();
+        taskDeadline.setHours(0, 0, 0);
+        now.setHours(0, 0, 0);
+        var deadlineIsTomorrow = now.getTime() + MillisecondsInDay;
+        var deadlineIsThisWeek = now.getTime() + MillisecondsInWeek;
+        var dtTomorrow = new Date(deadlineIsTomorrow);
+        var dtWeek = new Date(deadlineIsThisWeek);
       }
-
-      if (event.target.value == "AllUndone" && arrForFilter[i].done == true) {
-        list.children[i].setAttribute("hidden", "true");
-      }
-    }
-  });
-
-  DateFilter.addEventListener("change", function(event) {
-    var arrForFilter = toArray();
-
-    for (var i = 0; i < arrForFilter.length; i++) {
-      var taskDeadline = new Date(arrForFilter[i].date);
-      var now = new Date();
-      taskDeadline.setHours(0, 0, 0);
-      now.setHours(0, 0, 0);
-      var deadlineIsTomorrow = now.getTime() + MillisecondsInDay;
-      var deadlineIsThisWeek = now.getTime() + MillisecondsInWeek;
-      var dtTomorrow = new Date(deadlineIsTomorrow);
-      var dtWeek = new Date(deadlineIsThisWeek);
 
       list.children[i].removeAttribute("hidden", "true");
 
-      if (event.target.value == "Tomorrow")
+      if (DoneFilter.value == "AllDone" && arrForFilter[i].done == false) {
+        list.children[i].setAttribute("hidden", "true");
+      }
+
+      if (DoneFilter.value == "AllUndone" && arrForFilter[i].done == true) {
+        list.children[i].setAttribute("hidden", "true");
+      }
+
+      if (DateFilter.value == "Tomorrow")
         if (
           taskDeadline < now ||
           taskDeadline > dtTomorrow ||
@@ -124,7 +118,7 @@ var todoModule = (function() {
           list.children[i].setAttribute("hidden", "true");
         }
 
-      if (event.target.value == "Week")
+      if (DateFilter.value == "Week")
         if (
           taskDeadline < now ||
           taskDeadline > dtWeek ||
@@ -133,6 +127,14 @@ var todoModule = (function() {
           list.children[i].setAttribute("hidden", "true");
         }
     }
+  }
+
+  DoneFilter.addEventListener("change", function(event) {
+    filter();
+  });
+
+  DateFilter.addEventListener("change", function(event) {
+    filter(event.target);
   });
 
   function clearList() {
