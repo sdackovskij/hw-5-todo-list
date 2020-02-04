@@ -71,7 +71,7 @@ var todoModule = (function() {
   });
 
   function storage() {
-    var obj = toArray();
+    var obj = makeArray();
     var serialObj = JSON.stringify(obj);
     localStorage.setItem("myKey", serialObj);
   }
@@ -85,7 +85,7 @@ var todoModule = (function() {
   }
 
   function filter(dateEvent) {
-    var arrForFilter = toArray();
+    var arrForFilter = makeArray();
 
     for (var i = 0; i < arrForFilter.length; i++) {
       if (dateEvent == DateFilter) {
@@ -144,7 +144,7 @@ var todoModule = (function() {
     localStorage.clear();
   }
 
-  function toArray() {
+  function makeArray() {
     var arrNamesTasks = list.querySelectorAll(".tasks");
     var arrDates = list.querySelectorAll(".date");
     var arrDone = list.querySelectorAll(".done");
